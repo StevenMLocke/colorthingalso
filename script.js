@@ -4,7 +4,7 @@ $(document).ready(function() {
   var $green = 00;
   var $blue = 00;
   var $divider = 0;
-  var $height = $(window).height();
+  var $height = $(window).height() -20;
   var $width = $(window).width();
 
   $("body").append('<div class="triggerBar"></div>');
@@ -38,22 +38,28 @@ $(document).ready(function() {
 
   $("body").append("<div class='contain'></div>");
   $(".contain").height($height);
+  $(".contain").width($height + 2);
+  $(".contain").css({"margin":"8px auto",
+                     "border":"1px solid black",
+                     "background-color":"lightGray",
+                     "overflow":"hidden",
+                     "padding":"0px 0px 0px 0px"
+                    });
   
   while ($divider < 2 || $divider > 64) {
 	$divider = prompt("pick a number from 2 to 64");
 	}
 	
-	var $divHeight = ($height -2)/$divider;
-	var $divWidth = $width/$divider;
+	var $divDim = ($height)/$divider;
 
   for (var i = 0; i < $divider; i++) {
     $('.contain').append("<div class='aRow'></div>");
-    $(".aRow").last().height($divHeight);
-    $(".aRow").last().width($width);
+    $(".aRow").last().height($divDim);
+    $(".aRow").last().width($(".contain").width());
     for (var j = 0; j < $divider; j++) {
       $('.aRow').last().append("<div class='aDiv'></div>");
-      $('.aDiv').last().height($divHeight);
-      $('.aDiv').last().width($divWidth);
+      $('.aDiv').last().height($divDim);
+      $('.aDiv').last().width($divDim);
     };
   }
 
